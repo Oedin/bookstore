@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+    <h1 th:text="${title}">List of my books:</h1>
+
+    <nav th:replace="fragments :: navigation"></nav>
+
+    <p th:unless="${books} and ${books.size()}">NO BOOKS :-(</p>
+
+<table class="table">
+
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>Edit</th>
+    </tr>
+    <tr th:each="books : ${books}">
+        <td th:text="${books.titleName}"></td>
+        <td th:text="${books.authorName}"></td>
+        <td th:text="${books.genre.name}"></td>
+        <td th:text="${books.bookId}"></td>
+    </tr>
+</table>
+
+</body>
+
+</html>

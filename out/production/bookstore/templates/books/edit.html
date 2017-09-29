@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+<h1 th:text="${title}">Edit Book</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" style ="max-width:600px;" th:object="${book}" action="/books/edit">
+    <div class="form-group">
+        <label th:for="titleName">Book Title</label>
+        <input class="form-control" th:field="*{titleName}"/>
+        <span th:errors="*{titleName}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="authorName">Author Name:</label>
+        <input class="form-control" th:field="*{authorName}"/>
+        <span th:errors="*{authorName}" class="error"></span>
+    </div>
+    <div class="form=group">
+        <label th:for="genre">Genre</label>
+        <select th:field="*{genre}">
+            <option th:each="bookGenre : ${bookGenre}"
+                    th:text="${bookGenre.name}"
+                    th:value="${bookGenre}"></option>
+        </select>
+    </div>
+
+    <input type="hidden" th:field="*{bookId}" th:value="*{bookId}"/>
+    <input type="submit" value="Edit book" />
+
+</form>
+
+</body>
+</html>
